@@ -15,8 +15,8 @@ jobs:
     - name: Setup Submodule Caches
       uses: actions/cache@v3
       with:
-        path: >
-          "${{ github.workspace }}/cacheA"
+        path: |-
+          ${{ github.workspace }}/cacheA
         key: ${{ runner.os }}-submodule-${{ github.run_id }}
         restore-keys: |
           ${{ runner.os }}-submodule
