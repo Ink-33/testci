@@ -1,0 +1,28 @@
+name: "Build and Test"
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: ["*"]
+
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+ 
+    - name: Setup Submodule Caches
+      uses: actions/cache@v3
+      with:
+        path: |
+            "cacheA"
+        key: ${{ runner.os }}-submodule-${{ github.run_id }}
+        restore-keys: |
+          ${{ runner.os }}-submodule
+    
+    - run: git stash # restore patch
+    - run: echo ${{ github.workspace }}
+    - run: tree
+
+ 
